@@ -51,6 +51,10 @@ PRODUCT_PACKAGES += \
     Telecom \
     TeleService \
     VpnDialogs \
-    MmsService
-
+    MmsService \
+    Nethunter \
+    Terminal \
+    androidVNC \
+    F-Droid
+ 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_base.mk)
