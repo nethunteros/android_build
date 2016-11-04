@@ -667,13 +667,13 @@ include vendor/nethunter/build/core/mtk_target.mk
 # Set up final options.
 # ###############################################################
 
-#ifneq ($(COMMON_GLOBAL_CFLAGS)$(COMMON_GLOBAL_CPPFLAGS),)
-#$(warning COMMON_GLOBAL_C(PP)FLAGS changed)
-#$(info *** Device configurations are no longer allowed to change the global flags.)
-#$(info *** COMMON_GLOBAL_CFLAGS: $(COMMON_GLOBAL_CFLAGS))
-#$(info *** COMMON_GLOBAL_CPPFLAGS: $(COMMON_GLOBAL_CPPFLAGS))
-#$(error bailing...)
-#endif
+ifneq ($(COMMON_GLOBAL_CFLAGS)$(COMMON_GLOBAL_CPPFLAGS),)
+$(warning COMMON_GLOBAL_C(PP)FLAGS changed)
+$(info *** Device configurations are no longer allowed to change the global flags.)
+$(info *** COMMON_GLOBAL_CFLAGS: $(COMMON_GLOBAL_CFLAGS))
+$(info *** COMMON_GLOBAL_CPPFLAGS: $(COMMON_GLOBAL_CPPFLAGS))
+$(error bailing...)
+endif
 
 # These can be changed to modify both host and device modules.
 COMMON_GLOBAL_CFLAGS:= -DANDROID -fmessage-length=0 -W -Wall -Wno-unused -Winit-self -Wpointer-arith
