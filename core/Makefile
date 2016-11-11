@@ -248,7 +248,7 @@ endif
 	$(hide) TARGET_BUILD_TYPE="$(TARGET_BUILD_VARIANT)" \
 			TARGET_BUILD_FLAVOR="$(TARGET_PRODUCT)-$(TARGET_BUILD_VARIANT)" \
 			TARGET_DEVICE="$(TARGET_VENDOR_DEVICE_NAME)" \
-			DU_DEVICE="$(TARGET_DEVICE)" \
+			NETHUNTER_DEVICE="$(TARGET_DEVICE)" \
 			PRODUCT_NAME="$(TARGET_VENDOR_PRODUCT_NAME)" \
 			PRODUCT_BRAND="$(PRODUCT_BRAND)" \
 			PRODUCT_DEFAULT_LOCALE="$(call get-default-product-locale,$(PRODUCT_LOCALES))" \
@@ -1908,15 +1908,15 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	   --override_device=$(override_device) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-DU_TARGET_PACKAGE := $(PRODUCT_OUT)/$(DU_VERSION).zip
+NETHUNTER_TARGET_PACKAGE := $(PRODUCT_OUT)/$(NETHUNTER_VERSION).zip
 
 .PHONY: otapackage bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 ifneq ($(TARGET_CUSTOM_RELEASETOOL),)
 endif
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(DU_TARGET_PACKAGE)
-	$(hide) $(MD5SUM) $(DU_TARGET_PACKAGE) > $(DU_TARGET_PACKAGE).md5sum
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(NETHUNTER_TARGET_PACKAGE)
+	$(hide) $(MD5SUM) $(NETHUNTER_TARGET_PACKAGE) > $(NETHUNTER_TARGET_PACKAGE).md5sum
 	@echo -e ${CL_RST}""
 	@echo -e ${CL_RST}"        ·▄▄▄▄  ▪  ▄▄▄  ▄▄▄▄▄ ▄· ▄▌    ▄• ▄▌ ▐ ▄ ▪   ▄▄·       ▄▄▄   ▐ ▄ .▄▄ ·          "
 	@echo -e ${CL_RST}"        ██▪ ██ ██ ▀▄ █·•██  ▐█▪██▌    █▪██▌•█▌▐███ ▐█ ▌▪▪     ▀▄ █·•█▌▐█▐█ ▀.          "
@@ -1927,7 +1927,7 @@ endif
 	@echo -e ${CL_RST}"                   Build completed! Now flash that shit and enjoy!!                    "
 	@echo -e ${CL_RST}""${CL_RST}
 	@echo -e ${CL_RED}"======================================================================================="${CL_RED}
-	@echo -e ${CL_RED}"$(DU_TARGET_PACKAGE)"${CL_RED}
+	@echo -e ${CL_RED}"$(NETHUNTER_TARGET_PACKAGE)"${CL_RED}
 	@echo -e ${CL_RED}"======================================================================================="${CL_RED}
 	@echo -e ${CL_RST}"Be yourself unless you can be a unicorn. In that case, you should always be a unicorn."${CL_RST}
 endif    # build_ota_package
