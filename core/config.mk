@@ -884,6 +884,6 @@ RSCOMPAT_NO_USAGEIO_API_LEVELS := 8 9 10 11 12 13
 include $(BUILD_SYSTEM)/qcom_target.mk
 
 # DU common sepolicy
-include $(TOPDIR)vendor/du/sepolicy/sepolicy.mk
+include $(TOPDIR)vendor/nethunter/sepolicy/sepolicy.mk
 
 include $(BUILD_SYSTEM)/dumpvar.mk

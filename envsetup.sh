@@ -581,7 +581,7 @@ function breakfast()
     DU_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/du/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/nethunter/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
