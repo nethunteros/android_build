@@ -133,12 +133,12 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^du_") ; then
-       DU_BUILD=$(echo -n $1 | sed -e 's/^du_//g')
+    if (echo -n $1 | grep -q -e "^nh_") ; then
+       NETHUNTER_BUILD=$(echo -n $1 | sed -e 's/^nh_//g')
     else
-       DU_BUILD=
+       NETHUNTER_BUILD=
     fi
-    export DU_BUILD
+    export NETHUNTER_BUILD
 
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \
@@ -598,7 +598,7 @@ function breakfast()
             lunch $target
         else
             # This is probably just the du model name
-            lunch du_$target-userdebug
+            lunch nh_$target-userdebug
         fi
     fi
     return $?
