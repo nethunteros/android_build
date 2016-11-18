@@ -777,7 +777,15 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
                    ""+input_zip.read("SYSTEM/addon.d/UPDATE-SuperSU.zip"))
     script.FlashSuperSU()
   script.ShowProgress(0.2, 10)
+
+  if block_based:
+    script.Print("Flashing SuperSU...")
+    common.ZipWriteStr(output_zip, "nethunter/nethunter.zip",
+                   ""+input_zip.read("SYSTEM/addon.d/nethunter.zip"))
+    script.FlashNethunter()
+  script.ShowProgress(0.2, 10)
   device_specific.FullOTA_InstallEnd()
+
 
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
