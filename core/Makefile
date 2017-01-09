@@ -2265,9 +2265,7 @@ nethunter: bacon
 	@echo -e ${CL_CYN}'=============================-Package complete-============================='${CL_RST}
  	@echo -e ${CL_CYN}"Folder : "${CL_MAG} $(NETHUNTER_TARGET_PACKAGE_FOLDER)${CL_RST}
  	@echo -e ${CL_CYN}"ZipName: "${CL_MAG} $(NETHUNTER_VERSION).zip${CL_RST}
- 	@echo -e ${CL_CYN}"MD5    : "${CL_MAG}" `cat $(NETHUNTER_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
- 	@echo -e ${CL_CYN}"Size   : "${CL_MAG}" `ls -lah $(NETHUNTER_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
- 	@echo -e ""                                                                                      
+ 	@echo -e ${CL_CYN}"MD5    : "${CL_MAG}" `cat $(NETHUNTER_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}                                                                                
 
 endif    # build_ota_package
 # -----------------------------------------------------------------
