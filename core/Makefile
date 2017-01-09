@@ -2242,12 +2242,15 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE)
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
 NETHUNTER_TARGET_PACKAGE := $(PRODUCT_OUT)/nethunter-$(NETHUNTER_VERSION).zip
+NETHUNTER_TARGET_PACKAGE_FOLDER := $(PRODUCT_OUT)
 
-.PHONY: otapackage nethunter
+.PHONY: otapackage bacon nethunter
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
+
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(NETHUNTER_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(NETHUNTER_TARGET_PACKAGE) > $(NETHUNTER_TARGET_PACKAGE).md5sum
+nethunter: bacon
 	@echo -e ""
 	@echo -e ${CL_CYN}"============================================================================"${CL_RST}
 	@echo -e ${CL_RED}" /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$   /$$ /$$   /$$ /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$$$$$$"${CL_RST}
