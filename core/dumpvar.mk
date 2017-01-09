@@ -129,7 +129,6 @@ $(info ============================================)
 $(foreach v, $(print_build_config_vars),\
   $(info $v=$($(v))))
 $(info ============================================)
-endif
 
 ifneq ($(BUILD_WITH_COLORS),0)
     include $(TOP_DIR)build/core/colors.mk
