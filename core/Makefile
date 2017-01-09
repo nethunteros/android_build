@@ -2241,7 +2241,7 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE)
 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-NETHUNTER_TARGET_PACKAGE := $(PRODUCT_OUT)/nethunter-$(NETHUNTER_VERSION).zip
+NETHUNTER_TARGET_PACKAGE := $(PRODUCT_OUT)/nethunterOS-$(NETHUNTER_VERSION).zip
 NETHUNTER_TARGET_PACKAGE_FOLDER := $(PRODUCT_OUT)
 
 .PHONY: otapackage bacon nethunter
@@ -2252,7 +2252,6 @@ bacon: otapackage
 	$(hide) $(MD5SUM) $(NETHUNTER_TARGET_PACKAGE) > $(NETHUNTER_TARGET_PACKAGE).md5sum
 
 nethunter: bacon
-	@echo -e ""
 	@echo -e ${CL_CYN}'============================================================================'${CL_RST}
 	@echo -e ${CL_RED}' /XX   /XX /XXXXXXXX /XXXXXXXX /XX   /XX /XX   /XX /XX   /XX /XXXXXXXX /XXXXXXXX /XXXXXXX'${CL_RST}
 	@echo -e ${CL_RED}'| XXX | XX| XX_____/|__  XX__/| XX  | XX| XX  | XX| XXX | XX|__  XX__/| XX_____/| XX__  XX'${CL_RST}
