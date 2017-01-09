@@ -677,6 +677,39 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   system_progress = 0.75
 
+  script.Print("");
+  script.Print("##################################################");
+  script.Print("##                                              ##");
+  script.Print("##  88      a8P         db        88        88  ##");
+  script.Print("##  88    .88'         d88b       88        88  ##");
+  script.Print("##  88   88'          d8''8b      88        88  ##");
+  script.Print("##  88 d88           d8'  '8b     88        88  ##");
+  script.Print("##  8888'88.        d8YaaaaY8b    88        88  ##");
+  script.Print("##  88P   Y8b      d8''''''''8b   88        88  ##");
+  script.Print("##  88     '88.   d8'        '8b  88        88  ##");
+  script.Print("##  88       Y8b d8'          '8b 888888888 88  ##");
+  script.Print("##                                              ##");
+  script.Print("################### NetHunter ####################");
+  script.Print("");
+  nethunterv = GetBuildProp("ro.nethunter.version", OPTIONS.info_dict)
+  if os.getenv("NETHUNTER_BUILD") is not None:
+    build = ' '.join(nethunterv.split('_')[3].split('-')).title()
+    script.Print("*   Version: %s"%(build));
+  elif os.getenv("NETHUNTER_NIGHTLY") is not None:
+    build = ' '.join(nethunterv.split('_')[2:]).title()
+    script.Print("*   Version: %s"%(build));
+  else:
+    build = GetBuildProp("ro.build.date", OPTIONS.info_dict)
+    script.Print("******************************************");
+    script.Print("************ UNOFFICIAL BUILD ************");
+    script.Print("******************************************");
+    script.Print("*   Compiled: %s"%(build));
+
+  device = GetBuildProp("ro.nethunter.device", OPTIONS.info_dict)
+  model = GetBuildProp("ro.product.brand", OPTIONS.info_dict)
+  script.Print("*   Device: %s (%s)"%(model, device));
+  script.Print("******************************************");
+
   if OPTIONS.wipe_user_data:
     system_progress -= 0.1
   if HasVendorPartition(input_zip):
@@ -808,7 +841,7 @@ endif;
   common.ZipWriteStr(output_zip, "system/build.prop",
                      ""+input_zip.read("SYSTEM/build.prop"))
 
-  common.ZipWriteStr(output_zip, "META-INF/org/cyanogenmod/releasekey",
+  common.ZipWriteStr(output_zip, "META-INF/org/nethunter/releasekey",
                      ""+input_zip.read("META/releasekey.txt"))
 
 def WritePolicyConfig(file_name, output_zip):

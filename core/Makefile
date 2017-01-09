@@ -1,5 +1,11 @@
 # Put some miscellaneous rules here
 
+# Build system colors
+
+ifneq ($(BUILD_WITH_COLORS),0)
+    include $(TOP_DIR)build/core/colors.mk
+endif
+
 # HACK: clear LOCAL_PATH from including last build target before calling
 # intermedites-dir-for
 LOCAL_PATH := $(BUILD_SYSTEM)
@@ -232,7 +238,7 @@ endif
 	$(hide) TARGET_BUILD_TYPE="$(TARGET_BUILD_VARIANT)" \
 			TARGET_BUILD_FLAVOR="$(TARGET_BUILD_FLAVOR)" \
 			TARGET_DEVICE="$(TARGET_VENDOR_DEVICE_NAME)" \
-			CM_DEVICE="$(TARGET_DEVICE)" \
+			NETHUNTER_DEVICE="$(TARGET_DEVICE)" \
 			PRODUCT_NAME="$(TARGET_VENDOR_PRODUCT_NAME)" \
 			PRODUCT_BRAND="$(PRODUCT_BRAND)" \
 			PRODUCT_DEFAULT_LOCALE="$(call get-default-product-locale,$(PRODUCT_LOCALES))" \
@@ -2197,7 +2203,7 @@ endif
 ifeq ($(WITH_GMS),true)
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := false
 else
-ifneq ($(CM_BUILD),)
+ifneq ($(NETHUNTER_BUILD),)
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := true
 else
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := false
@@ -2235,14 +2241,31 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE)
 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-CM_TARGET_PACKAGE := $(PRODUCT_OUT)/cm-$(CM_VERSION).zip
+NETHUNTER_TARGET_PACKAGE := $(PRODUCT_OUT)/nethunter-$(NETHUNTER_VERSION).zip
 
-.PHONY: otapackage bacon
+.PHONY: otapackage nethunter
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CM_TARGET_PACKAGE)
-	$(hide) $(MD5SUM) $(CM_TARGET_PACKAGE) > $(CM_TARGET_PACKAGE).md5sum
-	@echo "Package Complete: $(CM_TARGET_PACKAGE)"
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(NETHUNTER_TARGET_PACKAGE)
+	$(hide) $(MD5SUM) $(NETHUNTER_TARGET_PACKAGE) > $(NETHUNTER_TARGET_PACKAGE).md5sum
+	@echo -e ""
+	@echo -e ${CL_CYN}"============================================================================"${CL_RST}
+	@echo -e ${CL_RED}" /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$   /$$ /$$   /$$ /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$$$$$$"${CL_RST}
+	@echo -e ${CL_RED}"| $$$ | $$| $$_____/|__  $$__/| $$  | $$| $$  | $$| $$$ | $$|__  $$__/| $$_____/| $$__  $$"${CL_RST}
+	@echo -e ${CL_RED}"| $$$$| $$| $$         | $$   | $$  | $$| $$  | $$| $$$$| $$   | $$   | $$      | $$  \ $$"${CL_RST}
+	@echo -e ${CL_RED}"| $$ $$ $$| $$$$$      | $$   | $$$$$$$$| $$  | $$| $$ $$ $$   | $$   | $$$$$   | $$$$$$$/"${CL_RST}
+	@echo -e ${CL_RED}"| $$  $$$$| $$__/      | $$   | $$__  $$| $$  | $$| $$  $$$$   | $$   | $$__/   | $$__  $$"${CL_RST}
+	@echo -e ${CL_RED}"| $$\  $$$| $$         | $$   | $$  | $$| $$  | $$| $$\  $$$   | $$   | $$      | $$  \ $$"${CL_RST}
+	@echo -e ${CL_RED}"| $$ \  $$| $$$$$$$$   | $$   | $$  | $$|  $$$$$$/| $$ \  $$   | $$   | $$$$$$$$| $$  | $$"${CL_RST}
+	@echo -e ${CL_RED}"|__/  \__/|________/   |__/   |__/  |__/ \______/ |__/  \__/   |__/   |________/|__/  |__/"${CL_RST}
+	@echo -e ${CL_CYN}"=============================-Package complete-============================="${CL_RST}
+	@echo -e ""
+ 	@echo -e ${CL_CYN}"Folder : "${CL_MAG} $(NETHUNTER_TARGET_PACKAGE_FOLDER)${CL_RST}
+ 	@echo -e ${CL_CYN}"ZipName: "${CL_MAG} $(NETHUNTER_VERSION).zip${CL_RST}
+ 	@echo -e ${CL_CYN}"MD5    : "${CL_MAG}" `cat $(NETHUNTER_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
+ 	@echo -e ${CL_CYN}"Size   : "${CL_MAG}" `ls -lah $(NETHUNTER_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
+ 	@echo -e ${CL_CYN}"============================================================================"${CL_RST}
+ 	@echo -e ""                                                                                          
 
 endif    # build_ota_package
 # -----------------------------------------------------------------
