@@ -2250,25 +2250,24 @@ otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(NETHUNTER_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(NETHUNTER_TARGET_PACKAGE) > $(NETHUNTER_TARGET_PACKAGE).md5sum
+
 nethunter: bacon
 	@echo -e ""
-	@echo -e ${CL_CYN}"============================================================================"${CL_RST}
-	@echo -e ${CL_RED}" /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$   /$$ /$$   /$$ /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$$$$$$"${CL_RST}
-	@echo -e ${CL_RED}"| $$$ | $$| $$_____/|__  $$__/| $$  | $$| $$  | $$| $$$ | $$|__  $$__/| $$_____/| $$__  $$"${CL_RST}
-	@echo -e ${CL_RED}"| $$$$| $$| $$         | $$   | $$  | $$| $$  | $$| $$$$| $$   | $$   | $$      | $$  \ $$"${CL_RST}
-	@echo -e ${CL_RED}"| $$ $$ $$| $$$$$      | $$   | $$$$$$$$| $$  | $$| $$ $$ $$   | $$   | $$$$$   | $$$$$$$/"${CL_RST}
-	@echo -e ${CL_RED}"| $$  $$$$| $$__/      | $$   | $$__  $$| $$  | $$| $$  $$$$   | $$   | $$__/   | $$__  $$"${CL_RST}
-	@echo -e ${CL_RED}"| $$\  $$$| $$         | $$   | $$  | $$| $$  | $$| $$\  $$$   | $$   | $$      | $$  \ $$"${CL_RST}
-	@echo -e ${CL_RED}"| $$ \  $$| $$$$$$$$   | $$   | $$  | $$|  $$$$$$/| $$ \  $$   | $$   | $$$$$$$$| $$  | $$"${CL_RST}
-	@echo -e ${CL_RED}"|__/  \__/|________/   |__/   |__/  |__/ \______/ |__/  \__/   |__/   |________/|__/  |__/"${CL_RST}
-	@echo -e ${CL_CYN}"=============================-Package complete-============================="${CL_RST}
-	@echo -e ""
+	@echo -e ${CL_CYN}'============================================================================'${CL_RST}
+	@echo -e ${CL_RED}' /XX   /XX /XXXXXXXX /XXXXXXXX /XX   /XX /XX   /XX /XX   /XX /XXXXXXXX /XXXXXXXX /XXXXXXX'${CL_RST}
+	@echo -e ${CL_RED}'| XXX | XX| XX_____/|__  XX__/| XX  | XX| XX  | XX| XXX | XX|__  XX__/| XX_____/| XX__  XX'${CL_RST}
+	@echo -e ${CL_RED}'| XXXX| XX| XX         | XX   | XX  | XX| XX  | XX| XXXX| XX   | XX   | XX      | XX  \ XX'${CL_RST}
+	@echo -e ${CL_RED}'| XX XX XX| XXXXX      | XX   | XXXXXXXX| XX  | XX| XX XX XX   | XX   | XXXXX   | XXXXXXX/'${CL_RST}
+	@echo -e ${CL_RED}'| XX  XXXX| XX__/      | XX   | XX__  XX| XX  | XX| XX  XXXX   | XX   | XX__/   | XX__  XX'${CL_RST}
+	@echo -e ${CL_RED}'| XX\  XXX| XX         | XX   | XX  | XX| XX  | XX| XX\  XXX   | XX   | XX      | XX  \ XX'${CL_RST}
+	@echo -e ${CL_RED}'| XX \  XX| XXXXXXXX   | XX   | XX  | XX|  XXXXXX/| XX \  XX   | XX   | XXXXXXXX| XX  | XX'${CL_RST}
+	@echo -e ${CL_RED}'|__/  \__/|________/   |__/   |__/  |__/ \______/ |__/  \__/   |__/   |________/|__/  |__/'${CL_RST}
+	@echo -e ${CL_CYN}'=============================-Package complete-============================='${CL_RST}
  	@echo -e ${CL_CYN}"Folder : "${CL_MAG} $(NETHUNTER_TARGET_PACKAGE_FOLDER)${CL_RST}
  	@echo -e ${CL_CYN}"ZipName: "${CL_MAG} $(NETHUNTER_VERSION).zip${CL_RST}
  	@echo -e ${CL_CYN}"MD5    : "${CL_MAG}" `cat $(NETHUNTER_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
  	@echo -e ${CL_CYN}"Size   : "${CL_MAG}" `ls -lah $(NETHUNTER_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
- 	@echo -e ${CL_CYN}"============================================================================"${CL_RST}
- 	@echo -e ""                                                                                          
+ 	@echo -e ""                                                                                      
 
 endif    # build_ota_package
 # -----------------------------------------------------------------
