@@ -806,8 +806,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   # Code from Dirty Unicorns for flashing SuperSU
   if block_based:
     script.Print("Flashing SuperSU...")
-    common.ZipWriteStr(output_zip, "supersu/supersu.zip",
-                   ""+input_zip.read("SYSTEM/addon.d/UPDATE-SuperSU.zip"))
+    common.ZipWriteStr(output_zip, "magisk/magisk.zip",
+                   ""+input_zip.read("SYSTEM/addon.d/Magisk-v13.3.zip"))
     script.FlashSuperSU()
   script.ShowProgress(0.2, 10)
 
