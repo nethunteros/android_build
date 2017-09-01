@@ -691,7 +691,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("##                                              ##");
   script.Print("################### NetHunter ####################");
   script.Print("");
-  nethunterv = GetBuildProp("ro.nethunter.version", OPTIONS.info_dict)
+  nethunterv = GetBuildProp("ro.cm.version", OPTIONS.info_dict)
   if os.getenv("NETHUNTER_BUILD") is not None:
     build = ' '.join(nethunterv.split('_')[3].split('-')).title()
     script.Print("*   Version: %s"%(build));
